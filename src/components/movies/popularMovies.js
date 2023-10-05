@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MovieCard from "./movieCard";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import PagePagination from '../pagePagination/pagePagination'
 
 
 const PopularMovies = () => {
@@ -20,6 +21,20 @@ const PopularMovies = () => {
   const redirectToDetails = (id) => {
     navigate(`/movie-details/${id}`);
   };
+  const navigateToPage = (page) => {
+    setPage(page)
+  }
+
+  const increaseCount = () => {
+    if (page < 500){
+      setPage(page+1)
+    }
+  }
+  const decreaseCount = () => {
+    if (page > 1){
+      setPage(page-1)
+    }
+  }
   return (
     <div className="row">
       {popularMovies?.map((movie, index) => {
@@ -32,6 +47,12 @@ const PopularMovies = () => {
           </div>
         );
       })}
+      <PagePagination 
+        increase={increaseCount}
+        decrease={decreaseCount}
+        setPage={navigateToPage}
+        totalPages={pages} 
+      />
     </div>
   );
 };
