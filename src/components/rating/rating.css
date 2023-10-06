@@ -1,5 +1,5 @@
 
-  .rating {
+  .rate {
     position: relative;
     display: flex;
     align-items: center;
@@ -15,18 +15,18 @@
     top: 245px;
     left: 8px;
   }
-  .rating span {
+  .rate span {
     position: relative;
     display: flex;
     font-weight: bold;
     z-index: 3;
   }
-  .rating span small {
+  .rate span small {
     font-size: 0.5em;
     font-weight: 900;
     align-self: center;
   }
-  .rating::after {
+  .rate::after {
     content: "";
     position: absolute;
     inset: 0.5rem;
@@ -34,7 +34,7 @@
     border-radius: inherit;
     z-index: 1;
   }
-  .rating::before {
+  .rate::before {
     content: "";
     position: absolute;
     inset: 0.5rem;
@@ -42,16 +42,16 @@
     box-shadow: 0 0 0 1rem #c7e1f3;
     z-index: -1;
   }
-  .rating.good {
+  .rate.good {
     background: #27ae60;
     color: #27ae60;
   }
-  .rating.median {
+  .rate.median {
     background: #f1c40f;
     color: #f1c40f;
   }
   
-  .rating.bad {
+  .rate.bad {
     background: #e74c3c;
     color: #e74c3c;
   }

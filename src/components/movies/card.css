@@ -1,0 +1,4 @@
+
+.love:checked + .love{
+    color: orange;
+  }
