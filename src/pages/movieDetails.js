@@ -3,13 +3,16 @@ import { useParams } from "react-router";
 import axios from "axios";
 import "./movieDetails.css";
 import Stars from "../components/Star/Stars";
-import { Link } from "react-router-dom";
+import RelatedMovies from "../components/RelatedMovies/RelatedMovies";
+
 
 export default function MovieDetails() {
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   const [movieDetails, setMovieDetails] = useState(null);
   const { id } = useParams();
+  // const genreNames = movieDetails.genres.map((genre) => genre.name);
+
 
   useEffect(() => {
     axios
@@ -53,20 +56,50 @@ export default function MovieDetails() {
             <br />
             <br />
             <p className="overview-details">{movieDetails.overview}</p>
-            <br /><br/>
+            <br />
+            <br />
             <div className="text-center">
               <button className="btn btn-warning  mx-4" disabled>
-                Action
+                {movieDetails.genres.length > 0 && (
+                  <p>{movieDetails.genres[0].name}</p>
+                )}
               </button>
               <button className="btn btn-warning" disabled>
-                Crime
+                {movieDetails.genres.length > 0 && (
+                  <p>{movieDetails.genres[1].name}</p>
+                )}
               </button>
               <button className="btn btn-warning mx-4" disabled>
-                Thriller
+                {movieDetails.genres.length > 0 && (
+                  <p>{movieDetails.genres[2].name}</p>
+                )}
               </button>
-            </div><br/><br/>
-            <p><b>Durations : </b>117 Min     </p>
-            <p> <b>Language : </b> {movieDetails.original_language} </p>
+            </div>
+            <br />
+            <br />
+            <h6>Production Countries:</h6>
+            <ul>
+              {movieDetails.production_countries.map((country) => (
+                <li key={country.iso_3166_1}>{country.name}</li>
+              ))}
+            </ul>
+            <h6>Spoken Languages:</h6>
+            <ul>
+              {movieDetails.spoken_languages.map((language) => (
+                <li key={language.iso_639_1}>{language.name}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="container my-5">
+        <hr />
+
+        <div className="row">
+          <div className="col-md-12">
+            <h2>Recommended Movies</h2>
+            <RelatedMovies />
           </div>
         </div>
       </div>
