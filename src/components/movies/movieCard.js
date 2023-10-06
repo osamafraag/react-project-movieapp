@@ -1,6 +1,7 @@
 import Rating from '../rating/rating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
 export default function MovieCard(props) {
 
   const { movieDetails, handleNavigate } = props;

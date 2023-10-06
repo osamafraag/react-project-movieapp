@@ -1,0 +1,15 @@
+.title-details{
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Times New Roman';
+
+}
+.release-date-details{
+    font-size: 15px;
+    color: rgb(87, 85, 82);
+}
+.overview-details{
+    font-size: large;
+    font-weight: 500;
+    
+}

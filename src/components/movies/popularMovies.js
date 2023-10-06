@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import MovieCard from "./movieCard";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
 import PagePagination from '../pagePagination/pagePagination'
+import axios from "axios";
 
 
 const PopularMovies = () => {

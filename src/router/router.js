@@ -8,6 +8,7 @@ const Movies = React.lazy(() => import('../pages/movies'));
 const Login = React.lazy(() => import('../pages/login'));
 const Register = React.lazy(() => import('../pages/register'));
 const NotFound = React.lazy(() => import('../pages/notFound'));
+const MovieDetails = React.lazy(()=>import('../pages/movieDetails'));
 
 export default function Router() {
   return (
@@ -16,6 +17,7 @@ export default function Router() {
        <Route path="/" element={<Movies />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/movie-details/:id" element={<MovieDetails />} />
       {/* <Route path="/search/:movieName" element={<Search />} />
       <Route path="/watchList" element={<WatchList />} />
       <Route path="/movie-details/:id" element={<MovieDetails />} /> */}
