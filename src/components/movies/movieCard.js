@@ -2,6 +2,7 @@ import Rating from '../rating/rating'
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import './card.css'
 export default function MovieCard(props) {
 
   const [heartColor, setHeartColor] = useState("text-warning");
