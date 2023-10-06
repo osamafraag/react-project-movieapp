@@ -1,10 +1,16 @@
 import Rating from '../rating/rating'
+import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-
 export default function MovieCard(props) {
 
+  const [heartColor, setHeartColor] = useState("text-warning");
   const { movieDetails, handleNavigate } = props;
+
+  const handleClick = (event) => {
+    console.log(event.target.value)
+  }
+
   return (
     <div className="card position-relative mt-3" style={{height:'400px'}}>
       <Rating rating={movieDetails.vote_average*10}/>
@@ -14,11 +20,16 @@ export default function MovieCard(props) {
         <div className="row">
           <p className="card-title col-9 my-auto"
           style={{textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap', fontWeight: 'bold'}}>{movieDetails.title}</p>
-          <a className="col-1 my-auto" onClick={() => {}}>
-            <FontAwesomeIcon className='fs-5 my-auto text-warning' icon={faHeart} />
-          </a>
+          
+          <div className='col-1 my-auto text-muted'>
+            <input className="love" style={{display: 'none'}} type="checkbox" id={movieDetails.id}/>
+            <label className='my-auto love' for={movieDetails.id}>
+              <FontAwesomeIcon className='fs-5 my-auto' icon={faHeart} />
+            </label> 
+          </div>
+           
         </div>
-        <p className="col">{movieDetails.release_date}</p>
+        <p>{movieDetails.release_date}</p>
       </div> 
     </div>
     
