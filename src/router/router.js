@@ -7,6 +7,8 @@ const Login = React.lazy(() => import("../pages/login"));
 const Register = React.lazy(() => import("../pages/register"));
 const NotFound = React.lazy(() => import("../pages/notFound"));
 const MovieDetails = React.lazy(() => import("../pages/movieDetails"));
+const WatchList = React.lazy(() => import("../pages/watchList"));
+
 
 export default function Router() {
   return (
@@ -17,6 +19,7 @@ export default function Router() {
         <Route path="/register" element={<Register />} />
         <Route path="/search/:movieName" element={<Search />} />
         <Route path="/movie-details/:id" element={<MovieDetails />} />
+        <Route path="/watchList" element={<WatchList />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
