@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import "./movieDetails.css";
 import Stars from "../components/Star/Stars";
+import { LanguageContext } from '../context/language';
 
 export default function MovieDetails() {
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
-
+  const { contextLang , setContextLang }  = useContext(LanguageContext)
   const [movieDetails, setMovieDetails] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=d31d8bb09970c0c573668146ab0702f3`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=d31d8bb09970c0c573668146ab0702f3&language=${contextLang}`
       )
       .then((res) => {
         setMovieDetails(res.data);
       })
       .catch((err) => console.error(err));
-  }, [id]);
+  }, [id, contextLang]);
 
   if (!movieDetails) {
     return <div>Loading...</div>;
@@ -27,7 +28,7 @@ export default function MovieDetails() {
 
   return (
     <>
-      <div className="container">
+      <div className="container" dir={contextLang === 'ar' ? 'rtl' : 'ltr'}>
         <div className="row">
           <div className="col-md-4 ">
             <div className="card">

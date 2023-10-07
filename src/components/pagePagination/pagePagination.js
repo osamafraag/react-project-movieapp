@@ -19,7 +19,7 @@ function PagePagination(props){
           <p style={{textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap'}}> 
           {pages?.map((page, index) => {
             return(
-              <span className='my-auto btn' onClick={() => {setPage(page)}}>{page}</span>
+              <span className='my-auto btn'  key={page} onClick={() => {setPage(page)}}>{page}</span>
             );
           })}
           </p>
