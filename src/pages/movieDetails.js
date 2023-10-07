@@ -36,6 +36,10 @@ export default function MovieDetails() {
       isActive = true
     }
   })
+  const labelStyle = {
+    marginLeft: '450px'
+  };
+
 
   if (!movieDetails) {
     return <div>Loading...</div>;
@@ -61,7 +65,7 @@ export default function MovieDetails() {
               <div className='col my-auto text-muted'>
                 <input className="love" style={{display: 'none'}} type="checkbox" 
                 defaultChecked={isActive} id={movieDetails.id}/>
-                <label className='my-auto love' htmlFor={movieDetails.id} 
+                <label className='my-auto love' style={labelStyle} htmlFor={movieDetails.id} 
                 onClick={() => {dispatch(handleAction(movieDetails))}}>
                   <FontAwesomeIcon className='fs-3 my-auto'icon={faHeart} />
                 </label> 
@@ -83,7 +87,7 @@ export default function MovieDetails() {
               {movieDetails.production_countries.map((country) => (
                 <li key={country.iso_3166_1}>{country.name}</li>
               ))}
-            </ul>
+            </ul><br/>
             <h6>Languages Available:</h6>
             <ul>
               {movieDetails.spoken_languages.map((language) => (
@@ -91,9 +95,9 @@ export default function MovieDetails() {
               ))}
             </ul>
             </div>
-            <div className="col-7 text-center">
+            <div className="col-7 text-center"><br/><br/><br/>
               {movieDetails.genres.length > 0 && movieDetails.genres[0] && (
-                <button className="btn btn-warning mx-4" >
+                <button className="btn btn-warning mx-4 " >
                   <p className="my-auto">{movieDetails.genres[0].name}</p>
                 </button>
               )}

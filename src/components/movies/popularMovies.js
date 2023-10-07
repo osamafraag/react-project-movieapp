@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import PagePagination from "../pagePagination/pagePagination";
 import axios from "axios";
 import { LanguageContext } from '../../context/language';
-import watchList from "../../store/slices/watchList";
 
 
 const PopularMovies = () => {
