@@ -11,7 +11,6 @@
 //     dispatch(handleAction(movie));
 //   };
 
-
 //   return (
 //     <div className="container ">
 //       <h2>Watchlist</h2>
@@ -50,12 +49,12 @@
 
 // export default WatchList;
 
-
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { handleAction } from "../store/slices/watchList";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import Stars from "../components/Star/Stars";
 
 const WatchList = () => {
   const watchListCount = useSelector((state) => state.watchList.watchListCount);
@@ -84,11 +83,11 @@ const WatchList = () => {
                   icon={faHeart}
                   className="heart-icon"
                   style={{
-                    position: 'absolute',
-                    top: '10px',
-                    right: '10px',
-                    zIndex: '1',
-                    color: 'darkorange', // Yellow dark
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    zIndex: "1",
+                    color: "darkorange", // Yellow dark
                   }}
                 />
                 <img
@@ -99,7 +98,11 @@ const WatchList = () => {
               </div>
               <div className="card-body">
                 <h6 className="card-title">{movie.title}</h6>
-                <p className="card-text">Release Date: {movie.release_date}</p>
+                <p className="release-date-details">
+                  {movie.release_date}
+                </p>
+                <Stars rating={movie.vote_average / 2} />
+                <p>{movie.vote_count}</p>
                 <button
                   className="btn btn-danger"
                   onClick={() => handleAddRemove(movie)}
