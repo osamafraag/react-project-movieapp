@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect,useContext, useState } from "react";
 import MovieCard from "./movieCard";
 import { useNavigate } from "react-router-dom";
 import PagePagination from "../pagePagination/pagePagination";
 import axios from "axios";
+import { LanguageContext } from '../../context/language';
+import watchList from "../../store/slices/watchList";
 
 
 const PopularMovies = () => {
@@ -10,17 +12,14 @@ const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [pages, setPages] = useState(1);
   const [page, setPage] = useState(1);
+  const { contextLang , setContextLang }  = useContext(LanguageContext)
+
   useEffect(() => {
     axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=d31d8bb09970c0c573668146ab0702f3&page=${page}`
-      )
-      .then((res) => {
-        setPopularMovies(res.data.results);
-        setPages(res.data.total_pages);
-      })
+      .get(`https://api.themoviedb.org/3/movie/popular?api_key=d31d8bb09970c0c573668146ab0702f3&page=${page}&language=${contextLang}`)
+      .then((res) => {setPopularMovies(res.data.results); setPages(res.data.total_pages)})
       .catch((err) => console.log(err));
-  }, [page]);
+  },[page]);
 
   const redirectToDetails = (id) => {
     navigate(`/movie-details/${id}`);
@@ -40,7 +39,7 @@ const PopularMovies = () => {
     }
   };
   return (
-    <div className="row">
+    <div className="row" dir={contextLang === 'ar' ? 'rtl' : 'ltr'}>
       {popularMovies?.map((movie, index) => {
         return (
           <div className="col-2" key={movie.id}>
