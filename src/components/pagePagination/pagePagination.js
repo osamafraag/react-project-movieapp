@@ -5,7 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function PagePagination(props){
   const { increase, decrease, setPage, totalPages} = props;
   var pages = []
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1 ; i <= 20 ; i++) {
+    if(i > totalPages){
+      break
+    }
     pages.push(i)
   }
 

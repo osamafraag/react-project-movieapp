@@ -1,12 +1,14 @@
 import Rating from '../rating/rating'
+import {useState} from "react";
 import { useDispatch ,useSelector} from "react-redux";
 import { handleAction } from "../../store/slices/watchList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import './card.css'
 export default function MovieCard(props) {
-  var isActive = false
+  
   const { movieDetails, handleNavigate } = props;
+  var isActive = false
   const watchList = useSelector((state) => state.watchList);
   const dispatch = useDispatch();
   watchList.listedMovies?.map((movie, index) => {
@@ -15,8 +17,8 @@ export default function MovieCard(props) {
     }
   })
 
-
   return (
+    <>
     <div className="card position-relative mt-3" style={{height:'400px'}}>
       <Rating rating={movieDetails.vote_average*10}/>
       <img src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} 
@@ -40,6 +42,8 @@ export default function MovieCard(props) {
         <p>{movieDetails.release_date}</p>
       </div> 
     </div>
+    
+    </>
     
   );
 }
