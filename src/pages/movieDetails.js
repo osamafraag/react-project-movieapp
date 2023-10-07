@@ -3,16 +3,12 @@ import { useParams } from "react-router";
 import axios from "axios";
 import "./movieDetails.css";
 import Stars from "../components/Star/Stars";
-import RelatedMovies from "../components/RelatedMovies/RelatedMovies";
-
 
 export default function MovieDetails() {
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   const [movieDetails, setMovieDetails] = useState(null);
   const { id } = useParams();
-  // const genreNames = movieDetails.genres.map((genre) => genre.name);
-
 
   useEffect(() => {
     axios
@@ -41,11 +37,6 @@ export default function MovieDetails() {
                 alt={movieDetails.title}
               />
             </div>
-
-            {/* <img
-                src={`${imageBaseUrl}/${movieDetails.backdrop_path}`}
-                alt={movieDetails.title}
-              /> */}
           </div>
           <div className="col-md-8 ">
             <br />
@@ -59,21 +50,21 @@ export default function MovieDetails() {
             <br />
             <br />
             <div className="text-center">
-              <button className="btn btn-warning  mx-4" disabled>
-                {movieDetails.genres.length > 0 && (
+              {movieDetails.genres.length > 0 && movieDetails.genres[0] && (
+                <button className="btn btn-warning mx-4" disabled>
                   <p>{movieDetails.genres[0].name}</p>
-                )}
-              </button>
-              <button className="btn btn-warning" disabled>
-                {movieDetails.genres.length > 0 && (
+                </button>
+              )}
+              {movieDetails.genres.length > 1 && movieDetails.genres[1] && (
+                <button className="btn btn-warning" disabled>
                   <p>{movieDetails.genres[1].name}</p>
-                )}
-              </button>
-              <button className="btn btn-warning mx-4" disabled>
-                {movieDetails.genres.length > 0 && (
+                </button>
+              )}
+              {movieDetails.genres.length > 2 && movieDetails.genres[2] && (
+                <button className="btn btn-warning mx-4" disabled>
                   <p>{movieDetails.genres[2].name}</p>
-                )}
-              </button>
+                </button>
+              )}
             </div>
             <br />
             <br />
@@ -83,7 +74,7 @@ export default function MovieDetails() {
                 <li key={country.iso_3166_1}>{country.name}</li>
               ))}
             </ul>
-            <h6>Spoken Languages:</h6>
+            <h6>Languages Available:</h6>
             <ul>
               {movieDetails.spoken_languages.map((language) => (
                 <li key={language.iso_639_1}>{language.name}</li>
@@ -98,8 +89,7 @@ export default function MovieDetails() {
 
         <div className="row">
           <div className="col-md-12">
-            <h2>Recommended Movies</h2>
-            <RelatedMovies />
+            <h2>Recommendations</h2>
           </div>
         </div>
       </div>
