@@ -12,7 +12,6 @@ import Recommendation from '../components/recommendation/recommendation'
 
 export default function MovieDetails() {
   var isActive = false
-  console.log('dd')
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
   const { contextLang , setContextLang }  = useContext(LanguageContext)
   const [movieDetails, setMovieDetails] = useState(null);

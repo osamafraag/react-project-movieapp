@@ -1,81 +1,33 @@
-// import React from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { handleAction } from "../store/slices/watchList";
-
-// const WatchList = () => {
-//   const watchListCount = useSelector((state) => state.watchList.watchListCount);
-//   const listedMovies = useSelector((state) => state.watchList.listedMovies);
-//   const dispatch = useDispatch();
-
-//   const handleAddRemove = (movie) => {
-//     dispatch(handleAction(movie));
-//   };
-
-//   return (
-//     <div className="container ">
-//       <h2>Watchlist</h2>
-//       <p>
-//         Count: <button className="btn btn-danger">{watchListCount}</button>
-//       </p>
-//       <br />
-//       <br />
-
-//       <div className="row">
-//         {listedMovies.map((movie) => (
-//           <div key={movie.id} className="col-md-6 col-lg-4">
-//             <div className="card mb-3">
-//               <img
-//                 src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
-//                 alt={movie.id}
-//                 className="card-img-top"
-//               />
-//               <div className="card-body">
-//                 <h5 className="card-title">{movie.title}</h5>
-//                 <p className="card-text">Release Date: {movie.release_date}</p>
-//                 <button
-//                   className="btn btn-danger"
-//                   onClick={() => handleAddRemove(movie)}
-//                 >
-//                   Remove from Watchlist
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default WatchList;
-
 import React from "react";
+import { useContext, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { handleAction } from "../store/slices/watchList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeartCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import Stars from "../components/Star/Stars";
+import { LanguageContext } from '../context/language';
+import { useNavigate } from "react-router-dom";
 
 const WatchList = () => {
-  const watchListCount = useSelector((state) => state.watchList.watchListCount);
   const listedMovies = useSelector((state) => state.watchList.listedMovies);
+  const { contextLang, setContextLang } = useContext(LanguageContext)
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleAddRemove = (movie) => {
     dispatch(handleAction(movie));
   };
-
+  const navigateToHome = () => {
+    navigate(`/`);
+  };
+const [style, setStyle] = useState('text-muted')
   return (
-    <div className="container">
-      <h2>Watchlist</h2>
-      <p>
-        Count: <button className="btn btn-danger">{watchListCount}</button>
-      </p>
-      <br />
-      <br />
-
+    <div className="container" style={{justifyContent: 'center'}} dir={contextLang == 'ar'? 'rtl':'ltr'}>
+      {contextLang === 'ar'? <h2>قائمة الافلام المفضلة</h2> : <h2>Watchlist</h2>}
+      <hr/>
+      
       <div className="row">
-        {listedMovies.map((movie) => (
+        {listedMovies?.map((movie) => (
           <div key={movie.id} className="col-md-6 col-lg-4">
             <div className="card mb-3">
               <div className="position-relative">
@@ -87,7 +39,7 @@ const WatchList = () => {
                     top: "10px",
                     right: "10px",
                     zIndex: "1",
-                    color: "darkorange", // Yellow dark
+                    color: "darkorange", 
                   }}
                 />
                 <img
@@ -106,14 +58,20 @@ const WatchList = () => {
                 <button
                   className="btn btn-danger"
                   onClick={() => handleAddRemove(movie)}
-                >
-                  Remove from Watchlist
-                </button>
+                >Remove from Watchlist</button>
               </div>
             </div>
           </div>
         ))}
       </div>
+      { listedMovies.length === 0 ?  (
+        <div className="text-muted" style={{justifyContent: 'center', textAlign:'center', fontSize: '250px'}}>
+          <FontAwesomeIcon className={style} icon={faHeartCirclePlus} 
+          onMouseEnter={()=>{setStyle('text-dark')}}
+          onMouseLeave={() =>{setStyle('text-muted')}}
+          onClick={navigateToHome}/>
+        </div>
+      )  : () => {}}
     </div>
   );
 };

@@ -44,7 +44,7 @@ function HeaderNav() {
                 <FontAwesomeIcon className='fs-4 my-auto m-1' icon={faHeart} />
                 <span className='m-1 my-auto'>{contextLang === 'ar' ? 'الافلام المفضلة' : 'Watch list'}</span>
                 <div className='text-black text-center rounded bg-light' style={{width: '22px', height: '22px'}}>
-                  <span className='mx-auto my-auto'>{watchList.watchListCount}</span>
+                  <span className='mx-auto my-auto'>{watchList.listedMovies.length}</span>
                 </div>
               </div>
             </NavLink>

@@ -1,5 +1,5 @@
 import Rating from '../rating/rating'
-import {useState} from "react";
+import { useState, useEffect} from "react";
 import { useDispatch ,useSelector} from "react-redux";
 import { handleAction } from "../../store/slices/watchList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,7 +16,6 @@ export default function MovieCard(props) {
       isActive = true
     }
   })
-
   return (
     <>
     <div className="card position-relative mt-3" style={{height:'400px'}}>

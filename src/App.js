@@ -1,13 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
 import HeaderNav from "./components/navbar/navbar";
 import Router from "./router/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LanguageContext } from "./context/language";
 
 
 
 function App() {
-  const [contextLang, setContextLang] = useState("EN");
+  const [contextLang, setContextLang] = useState("en");
+
   return (
     <BrowserRouter>
         <LanguageContext.Provider value={{ contextLang, setContextLang }}>
