@@ -31,7 +31,7 @@ export default function MovieDetails() {
   }, [id, contextLang]);
 
   watchList?.listedMovies?.map((movie, index) => {
-    if (movie.id == movieDetails?.id){ 
+    if (movie.id === movieDetails?.id){ 
       isActive = true
     }
   })
